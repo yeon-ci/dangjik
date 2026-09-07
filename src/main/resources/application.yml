@@ -1,0 +1,12 @@
+server:
+  port: 8080
+  instance-name: ${SERVER_NAME:UNKNOWN}   # Worker 노드마다 -e SERVER_NAME=Server-A 등으로 다르게 주입
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never

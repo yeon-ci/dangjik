@@ -76,7 +76,7 @@ Worker 노드 하나를 강제 종료해 실제 장애 상황을 재현하고, �
 
 ## 트러블슈팅
 
-배포 과정에서 겪은 문제와 해결 과정은 별도 문서에 정리되어 있습니다 → [`docs/troubleshooting.md`](docs/troubleshooting.md)
+배포 과정에서 겪은 문제와 해결 과정은 별도 문서에 정리되어 있습니다 → [`docs/troubleshooting.md`](dangjik-docs/docs/troubleshooting.md)
 
 - Calico 네트워크 불통 (보안그룹 미비)
 - 롤링 업데이트 시 Pod 무한 Pending (Anti-Affinity와 배포 전략 충돌)

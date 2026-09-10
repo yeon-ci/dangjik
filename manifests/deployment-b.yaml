@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dangjik-b
+  labels:
+    app: dangjik
+    server: server-b
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      server: server-b
+  template:
+    metadata:
+      labels:
+        app: dangjik
+        server: server-b
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - dangjik
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: dangjik
+          image: yeonci/dangjik:1.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_NAME
+              value: "Server-B"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 3
